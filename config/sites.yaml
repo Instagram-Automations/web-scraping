@@ -1,0 +1,54 @@
+# Define target sites and extraction rules.
+# Each site can define:
+# - start_urls: list of pages to crawl
+# - item_selector: CSS selector for each result card/row
+# - fields: mapping of output field -> { selector: "...", attr: "href"|text, optional: true }
+# - pagination: { next_selector: "...", max_pages: 1 }
+# - request: { headers: {...}, cookies: {...} }
+# - metadata: { source: "..." }
+sites:
+  - name: "example-products"
+    metadata:
+      source: "https://example.com"
+      category: "demo"
+    start_urls:
+      - "https://example.com/"
+    item_selector: "body"  # Example.com has minimal HTML; this demo will still produce a record
+    fields:
+      title:
+        selector: "h1"
+        attr: "text"
+      url:
+        selector: "a"
+        attr: "href"
+        optional: true
+      description:
+        selector: "p"
+        attr: "text"
+        optional: true
+    pagination:
+      next_selector: ""   # No pagination
+      max_pages: 1
+
+  - name: "dummy-fallback"
+    metadata:
+      source: "offline-fallback"
+      category: "demo"
+    start_urls:
+      - "file://offline.html"  # Handled as non-http; scraper will generate fallback content
+    item_selector: "div.card"
+    fields:
+      title:
+        selector: ".title"
+        attr: "text"
+      url:
+        selector: ".title a"
+        attr: "href"
+        optional: true
+      price:
+        selector: ".price"
+        attr: "text"
+        optional: true
+    pagination:
+      next_selector: ""
+      max_pages: 1
