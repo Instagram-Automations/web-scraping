@@ -61,7 +61,7 @@ It’s built for developers, analysts, and organizations that depend on continuo
 </p>
 <p align="center">
   <a href="https://bitbash.dev" target="_blank">
-    <img src="web-scraping.png" alt="web-scraping" width="95%">
+    <img src="media/web-scraping.png" alt="web-scraping" width="95%">
   </a>
 
 ---
